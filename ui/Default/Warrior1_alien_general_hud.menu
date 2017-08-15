@@ -1,0 +1,45 @@
+#include "ui/menudef.h"
+
+{
+
+#define W 640
+#define H 480
+
+menuDef
+ {
+	name "alien_general_hud"
+	fullScreen MENU_FALSE
+	visible MENU_TRUE
+	rect 0 0 W H
+	aspectBias ASPECT_NONE
+
+	#include "ui/Default/Warrior1_alien_common_hud.menu"
+
+	//BLOB
+	itemDef
+	{
+		name "blob"
+		rect 497 419 52 18
+		aspectBias ALIGN_RIGHT
+		visible MENU_TRUE
+		cvartest hud_blobCenter
+		hideCvar {1}
+		forecolor 1 .677638 .345144 .6
+		background "ui/assets/alien/tremublob.tga"
+		ownerdraw CG_PLAYER_POISON_BARBS
+	}
+
+	itemDef
+	{
+		name "blob"
+		rect 313.4 245 13 40
+		visible MENU_TRUE
+		cvartest hud_blobCenter
+		showCvar {1}
+		forecolor 1 .677638 .345144 .6
+		background "ui/assets/alien/tremublob.tga"
+		ownerdraw CG_PLAYER_POISON_BARBS
+	}
+
+ }
+}

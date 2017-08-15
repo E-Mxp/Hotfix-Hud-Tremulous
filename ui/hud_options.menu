@@ -1,0 +1,493 @@
+#include "ui/menudef.h"
+
+{
+	\\ HUD OPTIONS \\
+	
+	#define X	      -100
+	#define Y	      20
+	#define W	      250
+	#define H	      ((10*(ELEM_H+ELEM_GAP))+50)
+	#define TOFF_X	      (0-(W/2))
+	#define ELEM_H	      16
+	#define ELEM_GAP      4
+	#define BUTT_W	      35
+	#define BUTT_H	      35
+	#define BORDER	      10
+	#define RESCOMBO_OFF  8
+	
+	menuDef
+	{
+		name "hud_options"
+		visible MENU_FALSE
+		fullscreen MENU_FALSE
+		rect (320-(W/2)) (240-(H/2)) W H
+		focusColor 1 .75 0 1
+		style WINDOW_STYLE_FILLED
+		border WINDOW_BORDER_FULL
+		popup
+		onEsc
+		{
+			play "sound/misc/menu1.wav";
+			close hud_options
+		}
+		
+		itemDef
+		{
+			name window
+			rect X 0 W H
+			style WINDOW_STYLE_FILLED
+			backcolor 0 0 0 1
+			visible MENU_TRUE
+			decoration
+			
+			border WINDOW_BORDER_FULL
+			borderSize 1.0
+			borderColor 0.5 0.5 0.5 1
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "HUD Style:"
+			cvar "hud_style"
+			cvarStrList { "GPP Default", "3", "Default", "0", "Centered", "1", "Compact", "2" }
+			rect X Y W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			action
+			{
+				play "sound/misc/menu1.wav";
+				setcvar cg_hudFiles null;
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "Hud Type:"
+			cvar "cg_hudFiles"
+			cvarStrList { "<Click Me>", "null", "Superpie", "ui/Default/Superpie1.cfg", "Hellrider", "ui/Default/Hellrider1.cfg", "Warrior", "ui/Default/Warrior1.cfg" }
+			rect X (Y+(ELEM_H+ELEM_GAP)) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			showCvar {"0"}
+			action
+			{
+			play "sound/misc/menu1.wav"; }
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "Hud Type:"
+			cvar "cg_hudFiles"
+			cvarStrList { "<Click Me>", "null", "Superpie", "ui/Centered/Superpie2.cfg", "Hellrider", "ui/Centered/Hellrider2.cfg", "Warrior", "ui/Centered/Warrior2.cfg" }
+			rect X (Y+(ELEM_H+ELEM_GAP)) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			showCvar {"1"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "Hud Type:"
+			cvar "cg_hudFiles"
+			cvarStrList { "<Click Me>", "null", "Superpie", "ui/Compact/Superpie3.cfg", "Hellrider", "ui/Compact/Hellrider3.cfg", "Warrior", "ui/Compact/Warrior3.cfg" }
+			rect X (Y+(ELEM_H+ELEM_GAP)) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			showCvar {"2"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "Hud Type:"
+			cvar "cg_hudFiles"
+			cvarStrList { "<Click Me>", "null", "GPP Default", "ui/hud.txt" }
+			rect X (Y+(ELEM_H+ELEM_GAP)) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			showCvar {"3"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_YESNO
+			text "On-screen Stage Report:"
+			cvar "hud_nonScoreStageReport"
+			rect X (Y+(2*(ELEM_H+ELEM_GAP))) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			hideCvar {"3"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_YESNO
+			text "Fullscreen Scanner:"
+			cvar "hud_scannerFullScreen"
+			rect X (Y+(3*(ELEM_H+ELEM_GAP))) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			hideCvar {"3"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "Console:"
+			cvar "hud_consoleSize"
+			cvarStrList { "Tiny", "0", "Small", "1", "Default", "2", "Big", "3", "Centered Tiny", "4", "Centered Small", "5", "Centered Default", "6", "Centered Big", "7" }
+			rect X (Y+(4*(ELEM_H+ELEM_GAP))) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			hideCvar {"3"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "Inventory:"
+			cvar "hud_inventory"
+			cvarStrList { "Center", "0", "Right 4:3", "1", "Right 16:10", "2", "Right 16:9" }
+			rect X (Y+(5*(ELEM_H+ELEM_GAP))) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			hideCvar {"3"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "Team Overlay:"
+			cvar "hud_teamoverlayLocation"
+			cvarStrList { "Center Left", "0", "Bottom Left", "1", "Center Right", "2", "Bottom Right", "3" }
+			rect X (Y+(6*(ELEM_H+ELEM_GAP))) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			hideCvar {"3"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "Human Dot Crosshair:"
+			cvar "hud_dotXhairs"
+			cvarStrList { "Off", "0", "White", "1", "Blue", "2", "Black", "3" }
+			rect X (Y+(7*(ELEM_H+ELEM_GAP))) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			hideCvar {"3"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_MULTI
+			text "Stamina Bar:"
+			cvar "hud_staminaElevation"
+			cvarStrList { "No (default)", "0", "Centered", "1", "Integrated", "2" }
+			rect X (Y+(8*(ELEM_H+ELEM_GAP))) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			hideCvar {"3"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+		
+		itemDef
+		{
+			type ITEM_TYPE_YESNO
+			text "Centered Barbs:"
+			cvar "hud_blobCenter"
+			rect X (Y+(9*(ELEM_H+ELEM_GAP))) W ELEM_H
+			textalign ALIGN_RIGHT
+			textalignx TOFF_X
+			textvalign VALIGN_CENTER
+			textscale .25
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			cvarTest hud_style
+			hideCvar {"2", "3"}
+			action
+			{
+				play "sound/misc/menu1.wav";
+			}
+		}
+
+		itemDef
+		{
+			text "OK"
+			type ITEM_TYPE_BUTTON
+			textscale .25
+			style WINDOW_STYLE_EMPTY
+			rect ((W-BUTT_W)-100) (H-BUTT_H) BUTT_W BUTT_H
+			textalign ALIGN_CENTER
+			textvalign VALIGN_CENTER
+			forecolor 1 1 1 1
+			visible MENU_TRUE
+			action
+			{
+				play "sound/misc/menu1.wav";
+				close hud_options
+			}
+		}
+        ///////////////////
+        //Insight Hudview//
+        ///////////////////
+		
+		itemDef
+		{
+			name DefaultBlack
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest hud_style
+			showCvar { "0" }
+			background "ui/assets/DefaultBlack.jpg"
+		}
+		
+		itemDef
+		{
+			name CenterdBlack
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest hud_style
+			showCvar { "1" }
+			background "ui/assets/CenteredBlack.jpg"
+		}
+		
+		itemDef
+		{
+			name CompactBlack
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest hud_style
+			showCvar { "2" }
+			background "ui/assets/CompactBlack.jpg"
+		}
+		
+		itemDef
+		{
+			name GPP
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest hud_style
+			showCvar { "3" }
+			background "ui/assets/GPP.jpg"
+		}
+		
+		itemDef
+		{
+			name DefaultSuperpie
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest cg_hudfiles
+			showCvar { "ui/Default/Superpie1.cfg" }
+			background "ui/assets/DefaultSuperpie.jpg"
+		}
+		
+		itemDef
+		{
+			name CenteredSuperpie
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest cg_hudfiles
+			showCvar { "ui/Centered/Superpie2.cfg" }
+			background "ui/assets/CenteredSuperpie.jpg"
+		}
+		
+		itemDef
+		{
+			name CenteredSuperpie
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest cg_hudfiles
+			showCvar { "ui/Compact/Superpie3.cfg" }
+			background "ui/assets/CompactSuperpie.jpg"
+		}
+		
+		itemDef
+		{
+			name DefaultHellrider
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest cg_hudfiles
+			showCvar { "ui/Default/Hellrider1.cfg" }
+			background "ui/assets/DefaultHellrider.jpg"
+		}
+		
+		itemDef
+		{
+			name CenteredHellrider
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest cg_hudfiles
+			showCvar { "ui/Centered/Hellrider2.cfg" }
+			background "ui/assets/CenteredHellrider.jpg"
+		}
+		
+		itemDef
+		{
+			name CompactHellrider
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest cg_hudfiles
+			showCvar { "ui/Compact/Hellrider3.cfg" }
+			background "ui/assets/CompactHellrider.jpg"
+		}
+		
+		itemDef
+		{
+			name DefaultWarrior
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest cg_hudfiles
+			showCvar { "ui/Default/Warrior1.cfg" }
+			background "ui/assets/DefaultWarrior.jpg"
+		}
+		
+		itemDef
+		{
+			name CenteredWarrior
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest cg_hudfiles
+			showCvar { "ui/Centered/Warrior2.cfg" }
+			background "ui/assets/CenteredWarrior.jpg"
+		}
+		
+		itemDef
+		{
+			name CompactWarrior
+			rect 115 30 200 150
+			style WINDOW_STYLE_SHADER
+			backcolor 0 0 0 1
+			visible 1
+			cvartest cg_hudfiles
+			showCvar { "ui/Compact/Warrior3.cfg" }
+			background "ui/assets/CompactWarrior.jpg"
+		}
+	}
+}

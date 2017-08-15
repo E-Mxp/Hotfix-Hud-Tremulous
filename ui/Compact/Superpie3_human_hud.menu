@@ -1,0 +1,676 @@
+#include "ui/menudef.h"
+
+{
+
+#define W 640
+#define H 480
+
+    menuDef
+    {
+        name "human_hud"
+        fullScreen MENU_FALSE
+        visible MENU_TRUE
+        rect 0 0 W H
+        aspectBias ASPECT_NONE
+
+#define COMMON_HUD_R 0.0
+#define COMMON_HUD_G 0.8
+#define COMMON_HUD_B 1.0
+#define COMMON_HUD_T 0.4
+#include "ui/common/common_hud.cfg"
+
+        //////////////////
+        //STATIC OBJECTS//
+        //////////////////
+
+        //RIGHT CIRCLE
+        itemDef
+        {
+            name "right-circle"
+            rect 262 426.25 22.5 22.5
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor 0 0 0 COMMON_HUD_T
+            style WINDOW_STYLE_SHADER
+            background "ui/assets/neutral/circle.tga"
+        }
+
+        //RIGHT ARM
+        itemDef
+        {
+            name "right-arm"
+            rect 255.5 420 94.5 35
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor 0 0 0 COMMON_HUD_T
+            style WINDOW_STYLE_SHADER
+            background "ui/assets/human/right-arm.tga"
+        }
+
+        //CREDITS LABEL
+        itemDef
+        {
+            name "credits-label"
+            rect 286.5 403 7 7.5
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.5
+            style WINDOW_STYLE_SHADER
+            background "ui/assets/human/credits.tga"
+        }
+
+        //RIGHT CAP
+        itemDef
+        {
+            name "right-cap"
+            rect 278.5 400 80 15
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor 0 0 0 COMMON_HUD_T
+            style WINDOW_STYLE_SHADER
+            background "ui/assets/human/right-cap.tga"
+        }
+
+        ///////////////////
+        //DYNAMIC OBJECTS//
+        ///////////////////
+
+        //CROSS
+        itemDef
+        {
+            name "cross"
+            rect 260.75 425 25 25
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.5
+            ownerdraw CG_PLAYER_HEALTH_CROSS
+        }
+
+        //BOLT (Default)
+        itemDef
+        {
+            name "bolt"
+            rect 265.75 427.8 15 20
+            cvartest hud_staminaElevation
+            hideCvar {1}
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0
+            backColor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.8
+            background "ui/assets/human/bolt.tga"
+            ownerdraw CG_PLAYER_STAMINA_BOLT
+        }
+
+        //BOLT (Elevation 1)
+        itemDef
+        {
+            name "bolt-elevation-1"
+            rect 315 360 10 15
+            cvartest hud_staminaElevation
+            showCvar {1}
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.8
+            backColor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.2
+            background "ui/assets/alien/bolt.tga"
+            ownerdraw CG_PLAYER_STAMINA_BOLT
+        }
+		
+        //STAMINA 1 (Default)
+        itemDef
+        {
+            name "stamina1"
+            rect 357.25 403.5 9 11.5
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_staminaElevation
+            showCvar {0}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.8
+            backColor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.2
+            background "ui/assets/human/stamina1.tga"
+            ownerdraw CG_PLAYER_STAMINA_1
+        }
+
+        //STAMINA 1 (Elevation 1)
+        itemDef
+        {
+            name "stamina1-elevation-1"
+            rect ((W/2) + 9) 350 15 9
+            aspectBias ALIGN_CENTER
+            cvartest hud_staminaElevation
+            showCvar {1}
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .35
+            backColor 0 0 0 0
+            background "ui/assets/human/buildstat/health.tga"
+            ownerdraw CG_PLAYER_STAMINA_1
+        }
+
+        //STAMINA 1 (Elevation 2)
+        itemDef
+        {
+            name "stamina1-elevation-2"
+            rect ((W/2) + 80) 405 8 14
+            aspectBias ALIGN_CENTER
+            cvartest hud_staminaElevation
+            showCvar {2}
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .35
+            backColor 0 0 0 0
+            background "ui/assets/human/buildstat/health.tga"
+            ownerdraw CG_PLAYER_STAMINA_1
+        }
+
+        //STAMINA 2 (Default)
+        itemDef
+        {
+            name "stamina2"
+            rect 346.75 410.75 11.5 10.5
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_staminaElevation
+            showCvar {0}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.8
+            backColor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.2
+            background "ui/assets/human/stamina2.tga"
+            ownerdraw CG_PLAYER_STAMINA_2
+        }
+
+        //STAMINA 2 (Elevation 1)
+        itemDef
+        {
+            name "stamina2-elevation-1"
+            rect ((W/2) - 1) 350 10 9
+            aspectBias ALIGN_CENTER
+            cvartest hud_staminaElevation
+            showCvar {1}
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .35
+            backColor 0 0 0 0
+            background "ui/assets/human/buildstat/health.tga"
+            ownerdraw CG_PLAYER_STAMINA_2
+        }
+
+        //STAMINA 2 (Elevation 2)
+        itemDef
+        {
+            name "stamina2-elevation-2"
+            rect ((W/2 + 80)) 419 8 10
+            aspectBias ALIGN_CENTER
+            cvartest hud_staminaElevation
+            showCvar {2}
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .35
+            backColor 0 0 0 0
+            background "ui/assets/human/buildstat/health.tga"
+            ownerdraw CG_PLAYER_STAMINA_2
+        }
+
+        //STAMINA 3 (Default)
+        itemDef
+        {
+            name "stamina3"
+            rect 343.5 423.5 10.5 7
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_staminaElevation
+            showCvar {0}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.8
+            backColor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.2
+            background "ui/assets/human/stamina3.tga"
+            ownerdraw CG_PLAYER_STAMINA_3
+        }
+
+        //STAMINA 3 (Elevation 1)
+        itemDef
+        {
+            name "stamina3-elevation-1"
+            rect ((W/2) - 11) 350 10 9
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_staminaElevation
+            showCvar {1}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .35
+            backColor 0 0 0 0
+            background "ui/assets/human/buildstat/health.tga"
+            ownerdraw CG_PLAYER_STAMINA_3
+        }
+
+        //STAMINA 3 (Elevation 2)
+        itemDef
+        {
+            name "stamina3-elevation-2"
+            rect ((W/2) + 80) 429 8 14
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_staminaElevation
+            showCvar {2}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .35
+            backColor 0 0 0 0
+            background "ui/assets/human/buildstat/health.tga"
+            ownerdraw CG_PLAYER_STAMINA_3
+        }
+
+        //STAMINA 4 (Default)
+        itemDef
+        {
+            name "stamina4"
+            rect 343.75 402.5 54 55
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_staminaElevation
+            showCvar {0}
+            decoration
+            forecolor 0 0 0 COMMON_HUD_T
+            backColor 1 0 0 0.8
+            background "ui/assets/human/stamina4.tga"
+            ownerdraw CG_PLAYER_STAMINA_4
+        }
+
+        //STAMINA 4 (Elevation 1)
+        itemDef
+        {
+            name "stamina4-elevation-1"
+            rect ((W/2) - 21) 350 10 9
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_staminaElevation
+            showCvar {1}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .35
+            backColor 0 0 0 0
+            background "ui/assets/human/buildstat/health.tga"
+            ownerdraw CG_PLAYER_STAMINA_4
+        }
+
+        //STAMINA 4 (Elevation 2)
+        itemDef
+        {
+            name "stamina4-elevation-2"
+            rect ((W/2) + 80) 443 8 10
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_staminaElevation
+            showCvar {2}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .35
+            backColor 0 0 0 0
+            background "ui/assets/human/buildstat/health.tga"
+            ownerdraw CG_PLAYER_STAMINA_4
+        }
+
+        //STAMINA WARNING
+        itemDef
+        {
+            name "stamina-warning"
+            rect 341.3 401.9 57 57
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_staminaElevation
+            hideCvar {0}
+            decoration
+            forecolor 0 0 0 0.2
+            backColor 0.4 0 0 0.8
+            background "ui/assets/human/ring.tga"
+            ownerdraw CG_PLAYER_STAMINA_3
+        }
+
+		//STAMINA BAR BG 1
+        itemDef
+        {
+            name "staminabg1"
+            rect ((W/2) - 24.5) 348 52 11
+            aspectBias ALIGN_CENTER
+            cvartest hud_staminaElevation
+            showCvar {1}
+            visible MENU_TRUE
+            decoration
+            forecolor 0.1 0.1 0.1 1
+            backColor 0.3 0 0 1
+            ownerdraw CG_PLAYER_BOOST_BOLT
+            background "ui/assets/neutral/charge_bg_h.tga"
+            ownerdraw CG_PLAYER_STAMINA_3
+        }
+
+		//STAMINA BAR BG 2
+        itemDef
+        {
+            name "staminabg2"
+            rect ((W/2) + 78) 404 12 50
+            aspectBias ALIGN_CENTER
+            cvartest hud_staminaElevation
+            showCvar {2}
+            visible MENU_TRUE
+            decoration
+            forecolor 0.1 0.1 0.1 1
+            backColor 0.3 0 0 1
+            ownerdraw CG_PLAYER_BOOST_BOLT
+            background "ui/assets/neutral/charge_bg_v.tga"
+            ownerdraw CG_PLAYER_STAMINA_3
+        }
+
+        //RING
+        itemDef
+        {
+            name "ring"
+            rect 353.75 413.5 33 33
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor 0 0 0 COMMON_HUD_T
+            backColor 1 0 0 0.8
+            background "ui/assets/human/ring.tga"
+            ownerdraw CG_PLAYER_CLIPS_RING
+        }
+
+        //CREDITS
+        itemDef
+        {
+            name "credits"
+            rect 293.5 402 45 11.25
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.5
+            ownerdraw CG_PLAYER_CREDITS_VALUE
+        }
+
+        //HEALTH
+        itemDef
+        {
+            name "health"
+            rect 269 423 60 15
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .8
+            addColorRange 0 10 1 0 0 1
+            ownerdraw CG_PLAYER_HEALTH
+        }
+
+        //WEAPON ICON
+        itemDef
+        {
+            name "weapon"
+            rect 357.75 417.5 25 25
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.5
+            ownerdraw CG_PLAYER_WEAPONICON
+        }
+
+        //WEAPON SELECT TEXT
+        itemDef
+        {
+            name "selecttext"
+            rect 200 300 240 25
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            textScale .5
+            ownerdraw CG_PLAYER_SELECTTEXT
+            textstyle ITEM_TEXTSTYLE_SHADOWED
+        }
+
+        //AMMO
+        itemDef
+        {
+            name "ammo"
+            rect 277 440 50 13
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .8
+            ownerdraw CG_PLAYER_AMMO_VALUE
+        }
+
+        //CLIPS
+        itemDef
+        {
+            name "clips"
+            rect 286 440 50 13
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .8
+            ownerdraw CG_PLAYER_CLIPS_VALUE
+        }
+
+        //BUILD TIMER
+        itemDef
+        {
+            name "buildtimer"
+            rect 315 235 10 10
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .8
+            ownerdraw CG_PLAYER_BUILD_TIMER
+        }
+
+        //USABLE
+        itemDef
+        {
+            name "usable"
+            rect 357.75 417.5 25 25
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .5
+            background "ui/assets/neutral/use.tga"
+            ownerdraw CG_PLAYER_USABLE_BUILDABLE
+        }
+
+        //SCANNER
+        itemDef
+        {
+            name "scannerfs"
+            rect 0 0 640 480
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_scannerFullScreen
+            showCvar {1}
+            decoration
+            forecolor 0.5 0.5 0.5 .3
+            background "gfx/null.tga"
+            ownerdraw CG_PLAYER_HUMAN_SCANNER
+        }
+
+        itemDef
+        {
+            name "scanner"
+            rect 164 320 312 72
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_scannerFullScreen
+            hideCvar {1}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B .3
+            background "ui/assets/human/scanner.tga"
+            ownerdraw CG_PLAYER_HUMAN_SCANNER
+        }
+
+        //INVENTORY
+        itemDef
+        {
+            name "inventory"
+            rect 170 455 300 20 // (Center)
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_inventory
+            showCvar {0}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B COMMON_HUD_T
+            ownerdraw CG_PLAYER_SELECT
+        }
+
+        itemDef
+        {
+            name "inventory"
+            rect 618 123 18 234 // (4:3)
+            visible MENU_TRUE
+            cvartest hud_inventory
+            showCvar {1}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B COMMON_HUD_T
+            ownerdraw CG_PLAYER_SELECT
+        }
+
+        itemDef
+        {
+            name "inventory"
+            rect 620 (123-18) 18 234 // (16:10)
+            visible MENU_TRUE
+            cvartest hud_inventory
+            showCvar {2}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B COMMON_HUD_T
+            ownerdraw CG_PLAYER_SELECT
+        }
+
+        itemDef
+        {
+            name "inventory"
+            rect 622 (123-2*18) 18 234 // (16:9)
+            visible MENU_TRUE
+            cvartest hud_inventory
+            showCvar {3}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B COMMON_HUD_T
+            ownerdraw CG_PLAYER_SELECT
+        }
+
+        //SELECTED
+        itemDef
+        {
+            name "selected"
+            rect 630 234 12 12 // (Right)
+            aspectBias ALIGN_RIGHT
+            visible MENU_TRUE
+            cvartest hud_inventory
+            hideCvar {0}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B COMMON_HUD_T
+            style WINDOW_STYLE_SHADER
+            background "ui/assets/backarrow.tga"
+        }
+
+        itemDef
+        {
+            name "selected"
+            rect 310 455 20 20 // (Center)
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            cvartest hud_inventory
+            showCvar {0}
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B COMMON_HUD_T
+            style WINDOW_STYLE_SHADER
+            background "ui/assets/neutral/selected.tga"
+        }
+
+        //CHARGE BAR
+        itemDef
+        {
+            name "charge"
+            rect 284 404 56 8
+            aspectBias ALIGN_CENTER
+            visible MENU_TRUE
+            decoration
+            forecolor COMMON_HUD_R COMMON_HUD_G COMMON_HUD_B 0.3
+            ownerdraw CG_PLAYER_CHARGE_BAR
+            background "ui/assets/neutral/charge_cap_h.tga"
+        }
+
+        //SPECTATOR TEXT
+        itemDef
+        {
+            name "followtext"
+            rect 200 350 240 25
+            foreColor 1 1 1 1
+            aspectBias ALIGN_CENTER
+            textalign ALIGN_CENTER
+            textvalign VALIGN_TOP
+            visible MENU_TRUE
+            decoration
+            textScale .5
+            textStyle ITEM_TEXTSTYLE_SHADOWED
+            ownerdraw CG_FOLLOW
+        }
+
+        //STAGE REPORT
+        itemDef
+        {
+            name stagereport
+            textalign ALIGN_RIGHT
+            textvalign VALIGN_CENTER
+            textscale 0.3
+            rect 434 450 200 30
+            forecolor 0 .8 1 .6
+            decoration
+            visible MENU_TRUE
+            cvartest hud_nonScoreStageReport
+            showCvar {1}
+            ownerdraw CG_STAGE_REPORT_TEXT
+        }
+
+        //CROSSHAIR DOT
+        itemDef
+        {
+            name "crosshairgray"
+            rect 319 239 2 2
+            visible 1
+            cvartest hud_dotXhairs
+            showCvar {1}
+            decoration
+            forecolor 0.5 0.5 0.5 0.5
+            style WINDOW_STYLE_SHADER
+            background "ui/assets/neutral/circle.tga"
+        }
+
+        itemDef
+        {
+            name "crosshairblue"
+            rect 319 239 2 2
+            visible 1
+            cvartest hud_dotXhairs
+            showCvar {2}
+            decoration
+            forecolor 0 .8 1 0.5
+            style WINDOW_STYLE_SHADER
+            background "ui/assets/neutral/circle.tga"
+        }
+
+        itemDef
+        {
+            name "crosshairblack"
+            rect 319 239 2 2
+            visible 1
+            cvartest hud_dotXhairs
+            showCvar {3}
+            decoration
+            forecolor 0 0 0 0.5
+            style WINDOW_STYLE_SHADER
+            background "ui/assets/neutral/circle.tga"
+        }
+
+    }
+
+}

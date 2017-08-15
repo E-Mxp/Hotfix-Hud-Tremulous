@@ -1,0 +1,269 @@
+#include "ui/menudef.h"
+
+{
+  \\ HUD OPTIONS \\
+  
+#define X             0
+#define Y             20
+#define W             250
+#define H             ((9*(ELEM_H+ELEM_GAP))+60)
+#define TOFF_X        (0-(W/2))
+#define ELEM_H        16
+#define ELEM_GAP      4
+#define BUTT_W        35
+#define BUTT_H        35
+#define BORDER        10
+#define RESCOMBO_OFF  8
+
+  menuDef
+  {
+    name "segfault"
+    visible MENU_FALSE
+    fullscreen MENU_FALSE
+    rect (320-(W/2)) (240-(H/2)) W H
+    focusColor 1 .75 0 1
+    style WINDOW_STYLE_FILLED
+    border WINDOW_BORDER_FULL
+    popup
+    onEsc
+    {
+      play "sound/misc/menu1.wav";
+      close segfault
+    }
+
+    itemDef
+    {
+      name window
+      rect 0 0 W H
+      style WINDOW_STYLE_FILLED
+      backcolor 0 0 0 1
+      visible MENU_TRUE
+      decoration
+
+      border WINDOW_BORDER_FULL
+      borderSize 1.0
+      borderColor 0.5 0.5 0.5 1
+    }
+
+	itemDef
+	{
+		type ITEM_TYPE_YESNO
+		text "Bloom:"
+		cvar "r_bloom"
+		rect X Y W ELEM_H
+		textalign ALIGN_RIGHT
+		textalignx TOFF_X
+		textvalign VALIGN_CENTER
+		textscale .25
+		forecolor 1 1 1 1
+		visible MENU_TRUE
+		action
+		{
+			play "sound/misc/menu1.wav";
+			setcvar r_bloom_sample_size 400;
+			setcvar r_bloom_alpha .1
+			setcvar r_bloom_darken 1.5
+			setcvar r_bloom_intensity 4
+		}
+	}
+
+    itemDef
+    {
+      type ITEM_TYPE_MULTI
+      text "Custom Console:"
+      cvar "scr_conUseShader"
+      cvarStrList { "On", "0", "Off", "1" }
+      rect X (Y+(ELEM_H+ELEM_GAP)) W ELEM_H
+      textalign ALIGN_RIGHT
+      textalignx TOFF_X
+      textvalign VALIGN_CENTER
+      textscale .25
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      action
+      {
+        play "sound/misc/menu1.wav";
+      }
+    }
+	
+    itemDef
+    {
+      type ITEM_TYPE_SLIDER
+      text "Color Red:"
+      cvarfloat "scr_conColorRed" 1 0 1
+      rect X (Y+(2*(ELEM_H+ELEM_GAP))) W ELEM_H
+      textalign ALIGN_RIGHT
+      textalignx TOFF_X
+      textvalign VALIGN_CENTER
+      textscale .25
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      cvarTest scr_conUseShader
+      hideCvar {"1"}
+      action
+      {
+        play "sound/misc/menu1.wav";
+      }
+    }
+
+    itemDef
+    {
+      type ITEM_TYPE_SLIDER
+      text "Color Blue:"
+      cvarfloat "scr_conColorBlue" 1 0 1
+      rect X (Y+(3*(ELEM_H+ELEM_GAP))) W ELEM_H
+      textalign ALIGN_RIGHT
+      textalignx TOFF_X
+      textvalign VALIGN_CENTER
+      textscale .25
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      cvarTest scr_conUseShader
+      hideCvar {"1"}
+      action
+      {
+        play "sound/misc/menu1.wav";
+      }
+    }
+
+    itemDef
+    {
+      type ITEM_TYPE_SLIDER
+      text "Color Green:"
+      cvarfloat "scr_conColorGreen" 1 0 1
+      rect X (Y+(4*(ELEM_H+ELEM_GAP))) W ELEM_H
+      textalign ALIGN_RIGHT
+      textalignx TOFF_X
+      textvalign VALIGN_CENTER
+      textscale .25
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      cvarTest scr_conUseShader
+      hideCvar {"1"}
+      action
+      {
+        play "sound/misc/menu1.wav";
+      }
+    }
+
+    itemDef
+    {
+      type ITEM_TYPE_SLIDER
+      text "Color Alpha:"
+      cvarfloat "scr_conColorAlpha" 1 0 1
+      rect X (Y+(5*(ELEM_H+ELEM_GAP))) W ELEM_H
+      textalign ALIGN_RIGHT
+      textalignx TOFF_X
+      textvalign VALIGN_CENTER
+      textscale .25
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      cvarTest scr_conUseShader
+      hideCvar {"1"}
+      action
+      {
+        play "sound/misc/menu1.wav";
+      }
+    }
+
+    itemDef
+    {
+      type ITEM_TYPE_MULTI
+      text "Console Bar:"
+      cvar "scr_conBarHeight"
+      cvarStrList { "On", "1", "Off", "0" }
+      rect X (Y+(6*(ELEM_H+ELEM_GAP))) W ELEM_H
+      textalign ALIGN_RIGHT
+      textalignx TOFF_X
+      textvalign VALIGN_CENTER
+      textscale .25
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      action
+      {
+        play "sound/misc/menu1.wav";
+      }
+    }
+
+    itemDef
+    {
+      type ITEM_TYPE_SLIDER
+	  group "consolebar"
+      text "Bar Color Red:"
+      cvarfloat "scr_conBarColorRed" 1 0 1
+      rect X (Y+(7*(ELEM_H+ELEM_GAP))) W ELEM_H
+      textalign ALIGN_RIGHT
+      textalignx TOFF_X
+      textvalign VALIGN_CENTER
+      textscale .25
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      cvarTest scr_conBarHeight
+      showCvar {"1"}
+      action
+      {
+        play "sound/misc/menu1.wav";
+      }
+    }
+
+    itemDef
+    {
+      type ITEM_TYPE_SLIDER
+	  group "consolebar"
+      text "Bar Color Blue:"
+      cvarfloat "scr_conBarColorBlue" 1 0 1
+      rect X (Y+(8*(ELEM_H+ELEM_GAP))) W ELEM_H
+      textalign ALIGN_RIGHT
+      textalignx TOFF_X
+      textvalign VALIGN_CENTER
+      textscale .25
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      cvarTest scr_conBarHeight
+      showCvar {"1"}
+      action
+      {
+        play "sound/misc/menu1.wav";
+      }
+    }
+	
+    itemDef
+    {
+      type ITEM_TYPE_SLIDER
+	  group "consolebar"
+      text "Bar Color Green:"
+      cvarfloat "scr_conBarColorGreen" 1 0 1
+      rect X (Y+(9*(ELEM_H+ELEM_GAP))) W ELEM_H
+      textalign ALIGN_RIGHT
+      textalignx TOFF_X
+      textvalign VALIGN_CENTER
+      textscale .25
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      cvarTest scr_conBarHeight
+      showCvar {"1"}
+      action
+      {
+        play "sound/misc/menu1.wav";
+      }
+    }
+	
+    itemDef
+    {
+      text "OK"
+      type ITEM_TYPE_BUTTON
+      textscale .25
+      style WINDOW_STYLE_EMPTY
+      rect (W-BUTT_W) (H-BUTT_H) BUTT_W BUTT_H
+      textalign ALIGN_CENTER
+      textvalign VALIGN_CENTER
+      forecolor 1 1 1 1
+      visible MENU_TRUE
+      action
+      {
+        play "sound/misc/menu1.wav";
+        close hud_options
+      }
+    }
+  }
+}
